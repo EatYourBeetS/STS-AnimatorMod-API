@@ -38,7 +38,7 @@ var cardModifiers =
     }
 ]
 
-var effectModifiers1 = 
+var effectModifiers1 =
 [
     {
         text: "Limited.",
@@ -53,8 +53,8 @@ var effectModifiers1 =
         formula: "($) * 0.8"
     }
 ];
-    
-var effectModifiers2 = 
+
+var effectModifiers2 =
 [
     {
         text: "On Synergy:",
@@ -70,7 +70,7 @@ var effectModifiers2 =
     }
 ];
 
-var effectTypes = 
+var effectTypes =
 [
     {
         text: "Deal X damage.",
@@ -148,7 +148,7 @@ var effectTypes =
         text: "Apply X Poison (AoE).",
         formula: "X * 0.35"
     },
-	{
+    {
         text: "Apply X Burning.",
         formula: "X * 0.28"
     },
@@ -156,40 +156,36 @@ var effectTypes =
         text: "Apply X Burning (AoE).",
         formula: "X * 0.42"
     },
-	{
+    {
         text: "Take X Damage.",
         formula: "-0.125 * X"
     },
     {
-        text: "Special Effect (X).",
-        formula: "X * 1.0"
+        text: "Special Effect.",
+        formula: "X"
     },
-	{
+    {
         text: "Gain X Force.",
         formula: "X * X * 0.2"
     },
-	{
+    {
         text: "Gain X Agility.",
         formula: "X * X * 0.25"
     },
-	{
+    {
         text: "Gain X Intellect.",
         formula: "X * X * 0.28"
     },
-	{
+    {
         text: "Boost X Force.",
         formula: "X * X * 0.32"
     },
-	{
+    {
         text: "Boost X Agility.",
         formula: "X * X * 0.37"
     },
-	{
+    {
         text: "Boost X Intellect.",
         formula: "X * X * 0.40"
-    },
-	{
-        text: "Take X Damage.",
-        formula: "-0.125 * X"
     }
 ];
