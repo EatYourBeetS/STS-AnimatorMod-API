@@ -5,6 +5,11 @@ function GetCost()
     return parseInt($('#CardCost').val()) || 0; 
 }
 
+function GetUpgrade() 
+{ 
+    return parseInt($('#CardUpgrade').val()) || 0; 
+}
+
 function GetEffectAmount()
 { 
     return parseFloat($('#EffectAmount').val() || 0).toFixed(3);
@@ -171,6 +176,12 @@ function CalculateTotal()
     else if (Rarity == 3) // Rare
     {
         maxThreshold = (Cost == 0 ? 0.9 : Cost == 1 ? 1.7 : (Cost * 1.05));
+    }
+
+    var upgrade = GetUpgrade() || 0;
+    if (upgrade > 0)
+    {
+        maxThreshold *= (1 + (upgrade * 0.25));
     }
 
     $("#Total").val("Total: " + Round(Total) + " (Max Expected: " + Round(maxThreshold) + ")");

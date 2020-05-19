@@ -77,6 +77,10 @@ var effectTypes =
         formula: "X * 0.111"
     },
     {
+        text: "Deal X damage (AoE).",
+        formula: "X * 0.111"
+    },
+    {
         text: "Gain X Block.",
         formula: "X * 0.125"
     },
@@ -87,6 +91,10 @@ var effectTypes =
     {
         text: "Gain X Energy.",
         formula: "X * 0.99"
+    },
+    {
+        text: "Gain X Energy Next turn.",
+        formula: "X * 0.55"
     },
     {
         text: "Motivate X.",
@@ -136,4 +144,8 @@ var effectTypes =
         text: "Apply X Poison (AoE).",
         formula: "X * 0.35"
     },
+    {
+        text: "Special Effect (X).",
+        formula: "X * 1.0"
+    }
 ];
