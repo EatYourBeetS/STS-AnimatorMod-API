@@ -78,7 +78,7 @@ var effectTypes =
     },
     {
         text: "Deal X damage (AoE).",
-        formula: "X * 0.111"
+        formula: "X * 0.143"
     },
     {
         text: "Gain X Block.",
