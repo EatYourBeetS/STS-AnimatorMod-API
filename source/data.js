@@ -89,11 +89,15 @@ var effectTypes =
         formula: "X * 0.35"
     },
     {
-        text: "Gain X Energy.",
-        formula: "X * 0.99"
+        text: "Draw X card(s) next turn.",
+        formula: "X * 0.24"
     },
     {
-        text: "Gain X Energy Next turn.",
+        text: "Gain X Energy.",
+        formula: "X * 0.96"
+    },
+    {
+        text: "Gain X Energy next turn.",
         formula: "X * 0.55"
     },
     {
@@ -144,8 +148,48 @@ var effectTypes =
         text: "Apply X Poison (AoE).",
         formula: "X * 0.35"
     },
+	{
+        text: "Apply X Burning.",
+        formula: "X * 0.28"
+    },
+    {
+        text: "Apply X Burning (AoE).",
+        formula: "X * 0.42"
+    },
+	{
+        text: "Take X Damage.",
+        formula: "-0.125 * X"
+    },
     {
         text: "Special Effect (X).",
         formula: "X * 1.0"
+    },
+	{
+        text: "Gain X Force.",
+        formula: "X * X * 0.2"
+    },
+	{
+        text: "Gain X Agility.",
+        formula: "X * X * 0.25"
+    },
+	{
+        text: "Gain X Intellect.",
+        formula: "X * X * 0.28"
+    },
+	{
+        text: "Boost X Force.",
+        formula: "X * X * 0.32"
+    },
+	{
+        text: "Boost X Agility.",
+        formula: "X * X * 0.37"
+    },
+	{
+        text: "Boost X Intellect.",
+        formula: "X * X * 0.40"
+    },
+	{
+        text: "Take X Damage.",
+        formula: "-0.125 * X"
     }
 ];

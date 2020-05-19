@@ -167,15 +167,15 @@ function CalculateTotal()
     var maxThreshold = Cost;
     if (Rarity == 1) // Common
     {
-        maxThreshold = (Cost == 0 ? 0.5 : Cost == 1 ? 1.35 : (Cost * 0.9));
+        maxThreshold = (Cost == 0 ? 0.5 : Cost == 1 ? 1.35 : (Cost * 0.94));
     }
     else if (Rarity == 2) // Uncommon
     {
-        maxThreshold = (Cost == 0 ? 0.6 : Cost == 1 ? 1.45 : Cost);
+        maxThreshold = (Cost == 0 ? 0.6 : Cost == 1 ? 1.45 : (Cost * 1.02));
     }
     else if (Rarity == 3) // Rare
     {
-        maxThreshold = (Cost == 0 ? 0.9 : Cost == 1 ? 1.7 : (Cost * 1.05));
+        maxThreshold = (Cost == 0 ? 0.9 : Cost == 1 ? 1.7 : (Cost * 1.06));
     }
 
     var upgrade = GetUpgrade() || 0;
