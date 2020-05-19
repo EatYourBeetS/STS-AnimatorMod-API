@@ -121,7 +121,7 @@ function RefreshFormula(element)
     {
         var mod2 = effectModifiers2[mod2Index];
         copy.text = mod2.text + " " + copy.text;
-        copy.formula = mod2.formula.replace("{E}", copy.formula);
+        copy.formula = mod2.formula.replace("$", copy.formula);
     }
     
     var mod1Index = element.attr("data-effectModifier1");
