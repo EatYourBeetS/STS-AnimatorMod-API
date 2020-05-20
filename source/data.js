@@ -2,15 +2,15 @@ var cardRarities =
 [
     {
         text: "Common",
-        formula: "Cost * 1.35"
+        formula: ""
     },
     {
         text: "Uncommon",
-        formula: "Cost * 1.55"
+        formula: ""
     },
     {
         text: "Rare",
-        formula: "Cost * 1.9"
+        formula: ""
     }
 ]
 
@@ -35,6 +35,10 @@ var cardModifiers =
     {
         text: "Haste",
         formula: "(Total) + 0.3"
+    },
+    {
+        text: "Autoplay",
+        formula: "(Total) * (1 - (Cost * 0.15))"
     }
 ]
 
@@ -161,8 +165,32 @@ var effectTypes =
         formula: "-0.125 * X"
     },
     {
+        text: "Scry X.",
+        formula: "(X + X) * 0.11"
+    },
+    {
+        text: "Lose X HP.",
+        formula: "-0.22 * X"
+    },
+    {
         text: "Special Effect X.",
         formula: "X"
+    },
+    {
+        text: "Gain X Temp. HP.",
+        formula: "X * 0.133"
+    },
+    {
+        text: "Heal X HP (*).",
+        formula: "X * 0.2"
+    },
+    {
+        text: "Gain X Metallicize (*).",
+        formula: "X * 0.4"
+    },
+    {
+        text: "Gain X Plated Armor (*).",
+        formula: "X * 0.3"
     },
     {
         text: "Gain X Force.",
@@ -186,6 +214,6 @@ var effectTypes =
     },
     {
         text: "Boost X Intellect.",
-        formula: "X * X * 0.40"
+        formula: "X * X * 0.39"
     }
 ];
