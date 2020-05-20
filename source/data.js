@@ -178,7 +178,7 @@ var effectTypes =
     },
     {
         text: "Gain X Temp. HP.",
-        formula: "X * 0.133"
+        formula: "X * 0.16"
     },
     {
         text: "Heal X HP (*).",
