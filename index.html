@@ -84,14 +84,10 @@
         </div>
 
         <div class="form-group col-2">
-            <input type="button" value="Copy" class="form-control btn btn-primary" disabled="disabled"/>
+            <input type="button" value="Refresh" class="form-control btn btn-primary" onclick="Export()"/>
         </div>
 
-        <div class="form-group col-2">
-            <input type="button" value="Refresh" class="form-control btn btn-primary" onclick="CalculateTotal()"/>
-        </div>
-
-        <div class="form-group offset-4 col-2">
+        <div class="form-group offset-6 col-2">
             <input type="button" value="Reset" class="form-control btn btn-danger" onclick="location.reload(true);"/>
         </div>
 
@@ -104,6 +100,12 @@
 
         <div class="form-group col-12">
             <input type="text" readonly="readonly" class="form-control" id="Total" style="font-weight: bold"/>
+        </div>
+
+        <hr class="col-12"/>
+
+        <div class="form-group col-12" hidden="hidden">
+            <textarea readonly="readonly" class="form-control" rows="4" id="Export"></textarea>
         </div>
     </div>
 

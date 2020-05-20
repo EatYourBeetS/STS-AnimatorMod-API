@@ -161,7 +161,7 @@ var effectTypes =
         formula: "-0.125 * X"
     },
     {
-        text: "Special Effect.",
+        text: "Special Effect X.",
         formula: "X"
     },
     {

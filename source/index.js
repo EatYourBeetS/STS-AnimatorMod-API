@@ -25,6 +25,11 @@ function GetRarity()
     // }
 }
 
+function GetRarityName() 
+{ 
+    return cardRarities[GetRarity() - 1].text;
+}
+
 function GetEffectTypeIndex()
 { 
     return parseInt($('#EffectType').val());
@@ -142,9 +147,39 @@ function RefreshFormula(element)
     var Rarity = GetRarity();
     var result = Round(eval(copy.formula));
 
+    element.attr("data-text", copy.text.replace('X', Round(X)));
     element.find("input").val(copy.text.replace('X', Round(X)) + " (" + copy.formula + " = " + result + ")");
 
     return result;
+}
+
+function Export()
+{
+    var total = CalculateTotal();
+
+    var text = "[" + GetCost() + "-Cost " + GetRarityName();
+    var upgrade = GetUpgrade();
+    if (upgrade > 0)
+    {
+        text += " (+" + upgrade + ")";
+    }
+    text += "]\n";
+
+    var cardModifiers = GetCardModifiers();
+    for (var i = 0; i < cardModifiers.length; i++)
+    {
+        text += cardModifiers[i].text + ". ";
+    }
+
+    $('[name="EffectFormula"]').each(function (index, item)
+    {
+        text += item.getAttribute("data-text") + " ";
+    });
+
+    text += "\n[" + total + " / " + CalculateMaxThreshold() + "]";
+
+    $("#Export").parent().removeAttr("hidden");
+    $("#Export").val(text);
 }
 
 function CalculateTotal()
@@ -164,18 +199,27 @@ function CalculateTotal()
         Total = eval(cardModifiers[i].formula);
     }
 
-    var maxThreshold = Cost;
-    if (Rarity == 1) // Common
+    $("#Total").val("Total: " + Round(Total) + " (Max Expected: " + CalculateMaxThreshold() + ")");
+
+    return Round(Total);
+}
+
+function CalculateMaxThreshold()
+{
+    var cost = GetCost();
+    var rarity = GetRarity();
+    var maxThreshold = cost;
+    if (rarity == 1) // Common
     {
-        maxThreshold = (Cost == 0 ? 0.5 : Cost == 1 ? 1.35 : (Cost * 0.94));
+        maxThreshold = (cost == 0 ? 0.5 : cost == 1 ? 1.35 : (cost * 0.94));
     }
-    else if (Rarity == 2) // Uncommon
+    else if (rarity == 2) // Uncommon
     {
-        maxThreshold = (Cost == 0 ? 0.6 : Cost == 1 ? 1.45 : (Cost * 1.02));
+        maxThreshold = (cost == 0 ? 0.6 : cost == 1 ? 1.45 : (cost * 1.02));
     }
-    else if (Rarity == 3) // Rare
+    else if (rarity == 3) // Rare
     {
-        maxThreshold = (Cost == 0 ? 0.9 : Cost == 1 ? 1.7 : (Cost * 1.06));
+        maxThreshold = (cost == 0 ? 0.9 : cost == 1 ? 1.7 : (cost * 1.06));
     }
 
     var upgrade = GetUpgrade() || 0;
@@ -184,5 +228,5 @@ function CalculateTotal()
         maxThreshold *= (1 + (upgrade * 0.25));
     }
 
-    $("#Total").val("Total: " + Round(Total) + " (Max Expected: " + Round(maxThreshold) + ")");
+    return Round(maxThreshold);
 }
