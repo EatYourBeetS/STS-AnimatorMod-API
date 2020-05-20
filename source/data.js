@@ -215,5 +215,33 @@ var effectTypes =
     {
         text: "Boost X Intellect.",
         formula: "X * X * 0.39"
+    },
+    {
+        text: "Channel X Frost.",
+        formula: "X * 0.55"
+    },
+    {
+        text: "Channel X Lightning.",
+        formula: "X * 0.45"
+    },
+    {
+        text: "Channel X Fire.",
+        formula: "X * 0.5"
+    },
+    {
+        text: "Channel X Earth.",
+        formula: "X * 0.6"
+    },
+    {
+        text: "Channel X Aether.",
+        formula: "X * 0.9"
+    },
+    {
+        text: "Channel X Plasma.",
+        formula: "X * 1.5"
+    },
+    {
+        text: "Channel X Dark.",
+        formula: "X * 0.58"
     }
 ];
