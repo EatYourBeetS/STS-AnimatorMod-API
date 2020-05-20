@@ -38,7 +38,7 @@ var cardModifiers =
     },
     {
         text: "Autoplay",
-        formula: "(Total) * (1 - (Cost * 0.15))"
+        formula: "(Total) * (1 - (Cost * 0.11))"
     }
 ]
 
@@ -181,15 +181,15 @@ var effectTypes =
         formula: "X * 0.16"
     },
     {
-        text: "Heal X HP (*).",
+        text: "Heal X HP [*].",
         formula: "X * 0.2"
     },
     {
-        text: "Gain X Metallicize (*).",
+        text: "Gain X Metallicize [*].",
         formula: "X * 0.4"
     },
     {
-        text: "Gain X Plated Armor (*).",
+        text: "Gain X Plated Armor [*].",
         formula: "X * 0.3"
     },
     {
