@@ -153,10 +153,8 @@ function RefreshFormula(element)
     return result;
 }
 
-function Export()
+function Export(total)
 {
-    var total = CalculateTotal();
-
     var text = "[" + GetCost() + "-Cost " + GetRarityName();
     var upgrade = GetUpgrade();
     if (upgrade > 0)
@@ -200,7 +198,7 @@ function CalculateTotal()
 
     $("#Total").val("Total: " + Round(Total) + " (Max Expected: " + CalculateMaxThreshold() + ")");
 
-    return Round(Total);
+    Export(Round(Total));
 }
 
 function CalculateMaxThreshold()
