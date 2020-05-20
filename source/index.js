@@ -178,7 +178,6 @@ function Export()
 
     text += "\n[" + total + " / " + CalculateMaxThreshold() + "]";
 
-    $("#Export").parent().removeAttr("hidden");
     $("#Export").val(text);
 }
 

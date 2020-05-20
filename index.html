@@ -27,50 +27,50 @@
         <br/><h2>Card Energy Calculator</h2>
     </div>
 
-    <hr class="col-12"/>
+    <hr/>
 
     <div class="form-row card-body">
 
-        <div class="form-group col-2">
+        <div class="form-group col-md-2 col-sm-8">
             <label class="form-label"><b>Rarity</b></label>
             <select class="form-control shadow-xs-inset" id="CardRarity">
             </select>
         </div>
 
-        <div class="form-group col-1">
+        <div class="form-group col-md-1 col-sm-2">
             <label class="form-label"><b>Cost</b></label>
             <input class="form-control shadow-xs-inset" type="number" min="0" max="3" value="1" id="CardCost"/>
         </div>
 
-        <div class="form-group col-1">
+        <div class="form-group col-md-1 col-sm-2">
             <label class="form-label"><b>Upgrade</b></label>
             <input class="form-control shadow-xs-inset" type="number" min="0" value="0" id="CardUpgrade"/>
         </div>
 
-        <div class="form-group col-8">
+        <div class="form-group col-md-8 col-sm-12">
             <label class="form-label"><b>Card Modifiers</b></label>
             <select class="advancedDropdown form-control shadow-xs-inset" multiple="multiple" id="CardModifiers">
             </select>
         </div>
 
-        <div class="form-group col-4">
-            <label class="form-label"><b>Effect 1</b></label>
+        <div class="form-group col-md-4 col-sm-8">
+            <label class="form-label"><b>Effect</b></label>
             <select class="advancedDropdown form-control shadow-xs-inset" id="EffectType"></select>
         </div>
 
-        <div class="form-group col-2">
+        <div class="form-group col-md-2 col-sm-4">
             <label class="form-label"><b>Amount</b></label>
             <input class="form-control shadow-xs-inset" type="number" value="1" id="EffectAmount"/>
         </div>
 
-        <div class="form-group col-3">
+        <div class="form-group col-md-3 col-sm-6">
             <label class="form-label"><b>Modifier 1</b></label>
             <select class="form-control shadow-xs-inset" id="EffectModifier1">
                 <option value="-1" selected>-</option>
             </select>
         </div>
 
-        <div class="form-group col-3">
+        <div class="form-group col-md-3 col-sm-6">
             <label class="form-label"><b>Modifier 2</b></label>
             <select class="form-control shadow-xs-inset" id="EffectModifier2">
                 <option value="-1" selected>-</option>
@@ -79,15 +79,15 @@
 
         <hr class="col-12"/>
 
-        <div class="form-group col-2">
+        <div class="form-group col-md-2 col-sm-4">
             <input type="button" value="Add" class="form-control btn btn-success" onclick="AddFormula()"/>
         </div>
 
-        <div class="form-group col-2">
+        <div class="form-group col-md-2 col-sm-4">
             <input type="button" value="Refresh" class="form-control btn btn-primary" onclick="Export()"/>
         </div>
 
-        <div class="form-group offset-6 col-2">
+        <div class="form-group offset-md-6 col-md-2 col-sm-4">
             <input type="button" value="Reset" class="form-control btn btn-danger" onclick="location.reload(true);"/>
         </div>
 
@@ -104,7 +104,7 @@
 
         <hr class="col-12"/>
 
-        <div class="form-group col-12" hidden="hidden">
+        <div class="form-group col-12">
             <textarea readonly="readonly" class="form-control" rows="4" id="Export"></textarea>
         </div>
     </div>
