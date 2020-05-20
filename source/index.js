@@ -161,7 +161,7 @@ function CalculateTotal()
     var cardModifiers = GetCardModifiers();
     for (var i = 0; i < cardModifiers.length; i++)
     {
-        Total = eval(cardModifiers[0].formula);
+        Total = eval(cardModifiers[i].formula);
     }
 
     var maxThreshold = Cost;
