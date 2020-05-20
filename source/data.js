@@ -173,7 +173,7 @@ var effectTypes =
         formula: "-0.22 * X"
     },
     {
-        text: "Special Effect X.",
+        text: "Special [X].",
         formula: "X"
     },
     {
