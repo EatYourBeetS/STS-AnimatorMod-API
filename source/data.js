@@ -125,7 +125,7 @@ var effectTypes =
         formula: "-0.05 * X"
     },
     {
-        text: "Discard X card(s).",
+        text: "Discard X random card(s).",
         formula: "-0.12 * X"
     },
     {
