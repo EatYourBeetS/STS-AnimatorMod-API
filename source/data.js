@@ -206,15 +206,15 @@ var effectTypes =
     },
     {
         text: "Boost X Force.",
-        formula: "X * X * 0.32"
+        formula: "(X * X * 0.2) + 0.12"
     },
     {
         text: "Boost X Agility.",
-        formula: "X * X * 0.37"
+        formula: "(X * X * 0.25) + 0.12"
     },
     {
         text: "Boost X Intellect.",
-        formula: "X * X * 0.39"
+        formula: "(X * X * 0.28) + 0.12"
     },
     {
         text: "Channel X Frost.",
