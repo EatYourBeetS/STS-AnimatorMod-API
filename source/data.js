@@ -217,6 +217,18 @@ var effectTypes =
         formula: "(X * X * 0.28) + 0.12"
     },
     {
+        text: "Lose no Force next turn.",
+        formula: "0.12"
+    },
+    {
+        text: "Lose no Agility next turn.",
+        formula: "0.13"
+    },
+    {
+        text: "Lose no Intellect next turn.",
+        formula: "0.14"
+    },
+    {
         text: "Channel X Frost.",
         formula: "X * 0.55"
     },
