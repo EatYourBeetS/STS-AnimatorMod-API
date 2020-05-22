@@ -257,27 +257,27 @@ var effectTypes =
         formula: "X * 0.58"
     },
     {
-        text: "Add Status to Hand (X times)",
+        text: "Add X Status to Hand",
         formula: "-0.08 * X"
     },
     {
-        text: "Add Status to Draw (X times)",
+        text: "Add X Status to Draw pile",
         formula: "-0.33 * X"
     },
     {
-        text: "Add Status to Discard (X times)",
+        text: "Add X Status to Discard pile",
         formula: "-0.22 * X"
     },
     {
-        text: "Add Curse to Hand (X times)",
+        text: "Add X Curse(s) to Hand",
         formula: "-0.12 * X"
     },
     {
-        text: "Add Curse to Draw (X times)",
+        text: "Add X Curse(s) to Draw pile",
         formula: "-0.38 * X"
     },
     {
-        text: "Add Curse to Discard (X times)",
+        text: "Add X Curse(s) to Discard pile",
         formula: "-0.27 * X"
     },
     {
