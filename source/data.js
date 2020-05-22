@@ -217,6 +217,18 @@ var effectTypes =
         formula: "(X * X * 0.28) + 0.12"
     },
     {
+        text: "Enter Force Stance [*]",
+        formula: "0.51"
+    },
+    {
+        text: "Enter Agility Stance [*]",
+        formula: "0.58"
+    },
+    {
+        text: "Enter Intellect Stance [*]",
+        formula: "0.64"
+    },
+    {
         text: "Lose no Force next turn",
         formula: "0.12"
     },
