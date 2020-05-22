@@ -255,5 +255,53 @@ var effectTypes =
     {
         text: "Channel X Dark",
         formula: "X * 0.58"
+    },
+    {
+        text: "Add Status to Hand (X times)",
+        formula: "-0.08 * X"
+    },
+    {
+        text: "Add Status to Draw (X times)",
+        formula: "-0.33 * X"
+    },
+    {
+        text: "Add Status to Discard (X times)",
+        formula: "-0.22 * X"
+    },
+    {
+        text: "Add Curse to Hand (X times)",
+        formula: "-0.12 * X"
+    },
+    {
+        text: "Add Curse to Draw (X times)",
+        formula: "-0.38 * X"
+    },
+    {
+        text: "Add Curse to Discard (X times)",
+        formula: "-0.27 * X"
+    },
+    {
+        text: "Gain X Orb Slot(s) [*]",
+        formula: "X * 0.49"
+    },
+    {
+        text: "Skip the enemy turn [*]",
+        formula: "X * 5.2"
+    },
+    {
+        text: "Gain X Intangible [*]",
+        formula: "X * 3.8"
+    },
+    {
+        text: "Retain X card(s)",
+        formula: "X * 0.21"
+    },
+    {
+        text: "Gain X Throwing-Knives",
+        formula: "X * 0.27"
+    },
+    {
+        text: "Gain X Blur",
+        formula: "X * 0.66"
     }
 ];
