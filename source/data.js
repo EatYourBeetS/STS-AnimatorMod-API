@@ -286,11 +286,11 @@ var effectTypes =
     },
     {
         text: "Skip the enemy turn [*]",
-        formula: "X * 5.2"
+        formula: "X * 5.3"
     },
     {
         text: "Gain X Intangible [*]",
-        formula: "X * 3.8"
+        formula: "X * 4.2"
     },
     {
         text: "Retain X card(s)",
