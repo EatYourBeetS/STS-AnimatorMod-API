@@ -1,92 +1,13 @@
 /// <reference path="data.js" />
 
-function GetCost() 
-{ 
-    return parseInt($('#CardCost').val()) || 0; 
-}
-
-function GetUpgrade() 
-{ 
-    return parseInt($('#CardUpgrade').val()) || 0; 
-}
-
-function GetEffectAmount()
-{ 
-    return parseFloat($('#EffectAmount').val() || 0).toFixed(3);
-}
-
-function GetRarity() 
-{ 
-    return parseInt($('#CardRarity').val()) + 1;
-    // var index = parseInt($('#CardRarity').val());
-    // if (index >= 0)
-    // {
-    //     return cardRarities[index];
-    // }
-}
-
-function GetRarityName() 
-{ 
-    return cardRarities[GetRarity() - 1].text;
-}
-
-function GetEffectTypeIndex()
-{ 
-    return parseInt($('#EffectType').val());
-}
-
-function GetEffectType()
-{ 
-    var index = GetEffectTypeIndex();
-    if (index >= 0)
-    {
-        return effectTypes[index];
-    }
-}
-
-function GetEffectModifierIndex1()
-{
-    return parseInt($('#EffectModifier1').val());
-}
-
-function GetEffectModifier1()
-{ 
-    var index = GetEffectModifierIndex1();
-    if (index >= 0)
-    {
-        return effectModifiers1[index];
-    }
-}
-
-function GetEffectModifierIndex2()
-{
-    return parseInt($('#EffectModifier2').val());
-}
-
-function GetEffectModifier2()
-{ 
-    var index = GetEffectModifierIndex2();
-    if (index >= 0)
-    {
-        return effectModifiers2[index];
-    }
-}
-
-function GetCardModifiers()
-{ 
-    var result = [];
-    var items = $('#CardModifiers').val();
-    for (var i = 0; i < items.length; i++)
-    {
-        result.push(cardModifiers[parseInt(items[i])]);
-    }
-
-    return result;
-}
-
 function SetDropdownOptions(id, items)
 {
     var select = document.getElementById(id);
+    if (select == null)
+    {
+        select = document.getElementsByName(id)[0];
+    }
+
     for (var i = 0; i < items.length; i++)
     {
         select.options.add(new Option(items[i].text, i));
@@ -100,6 +21,7 @@ function Setup()
     SetDropdownOptions("EffectModifier2", effectModifiers2);
     SetDropdownOptions("CardModifiers", cardModifiers);
     SetDropdownOptions("CardRarity", cardRarities);
+    $("#CardModifiers").select2({ containerCssClass: "shadow-xs-inset" });
 }
 
 function Round(number)
@@ -109,121 +31,144 @@ function Round(number)
 
 function AddFormula()
 {
-    var res = $('#EffectFormulaTemplate').clone().insertBefore('#Total');
+    var res = $('#EffectTemplate').clone().insertAfter("#TemplateRoot");
+    res.find('.advancedDropdown').select2({ containerCssClass: "shadow-xs-inset" });
     res.removeAttr('id');
     res.removeAttr("hidden");
     res.attr("name", "EffectFormula");
-    res.attr("data-effectType", GetEffectTypeIndex());
-    res.attr("data-effectAmount", GetEffectAmount());
-    res.attr("data-effectModifier1", GetEffectModifierIndex1());
-    res.attr("data-effectModifier2", GetEffectModifierIndex2());
-    CalculateTotal();
+    RefreshAll();
 }
 
-function RefreshFormula(element)
+function RefreshAll()
 {
-    var copy = {};
-    
-    Object.assign(copy, effectTypes[element.attr("data-effectType")]);
-    
-    var mod2Index = element.attr("data-effectModifier2");
-    if (mod2Index >= 0)
+    var card = UpdateCard();
+
+    card.Details = "[" + card.Cost + "-Cost " + card.RarityName;
+    if (card.Upgrade > 0)
     {
-        var mod2 = effectModifiers2[mod2Index];
-        copy.text = mod2.text + " " + copy.text;
-        copy.formula = mod2.formula.replace("$", copy.formula);
+        card.Details += " (+" + card.Upgrade + ")";
+    }
+    card.Details += " {" + card.Value + " / " + card.MaxValue + "}]\n";
+
+    for (var i = 0; i < card.Modifiers.length; i++)
+    {
+        card.Details += card.Modifiers[i].text + ". ";
+    }
+
+    for (var i = 0; i < card.Effects.length; i++)
+    {
+        card.Details += card.Effects[i].Details + " ";
+    }
+
+    var total = $("#Total");
+    total.val("Total: " + Round(card.Value) + " (Max Expected: " + card.MaxValue + ")");
+    total.removeClass("border-danger")
+    total.removeClass("border-success")
+
+    if (card.Value > 0)
+    {
+        if (card.Value > card.MaxValue || card.Value < (card.MaxValue / 2))
+        {
+            total.addClass("border-danger");
+        }
+        else
+        {
+            total.addClass("border-success");
+        }
+    }
+
+    $("#Export").val(card.Details);
+
+    console.log("Refreshing:")
+    console.log(card);
+}
+
+function UpdateCard()
+{
+    var card = {};
+
+    card.Cost = parseInt($('#CardCost').val()) || 0;
+    card.Upgrade = parseInt($('#CardUpgrade').val()) || 0;
+    card.Rarity = parseInt($('#CardRarity').val()) + 1;
+    card.RarityName = cardRarities[card.Rarity - 1].text;
+    card.Effects = [];
+    card.Modifiers = [];
+    card.Value = 0;
+
+    var items = $('#CardModifiers').val();
+    for (var i = 0; i < items.length; i++)
+    {
+        card.Modifiers.push(cardModifiers[parseInt(items[i])]);
+    }
+
+    var cost = card.Cost;
+    if (card.Rarity == 1) // Common
+    {
+        card.MaxValue = (cost == 0 ? 0.5 : cost == 1 ? 1.35 : (cost * 0.94));
+    }
+    else if (card.Rarity  == 2) // Uncommon
+    {
+        card.MaxValue = (cost == 0 ? 0.6 : cost == 1 ? 1.45 : (cost * 1.02));
+    }
+    else if (card.Rarity  == 3) // Rare
+    {
+        card.MaxValue = (cost == 0 ? 0.9 : cost == 1 ? 1.7 : (cost * 1.06));
+    }
+
+    card.MaxValue = Round(card.Upgrade <= 0 ? card.MaxValue : (card.MaxValue * (1 + (card.Upgrade * 0.25))));
+
+    $('[name="EffectFormula"]').each(function (_, item)
+    {
+        var effect = UpdateEffect($(item));
+        card.Effects.push(effect);
+        card.Value += effect.Value;
+    });
+
+    for (var i = 0; i < card.Modifiers.length; i++)
+    {
+        card.Value = eval(card.Modifiers[i].formula);
+    }
+
+    card.Value = Round(card.Value);
+
+    return card;
+}
+
+function UpdateEffect(div, card)
+{
+    var effect = {};
+    var copy = {};
+
+    effect.Amount = parseFloat(div.find("[name=EffectAmount").val() || 0).toFixed(3);
+    effect.Type_Index = parseInt(div.find("[name=EffectType]").val());
+    effect.Mod1_Index = parseInt(div.find("[name=EffectModifier1]").val());
+    effect.Mod2_Index = parseInt(div.find("[name=EffectModifier2]").val());
+
+    effect.Type = effect.Type_Index >= 0 ? effectTypes[effect.Type_Index] : null;
+    effect.Mod1 = effect.Mod1_Index >= 0 ? effectModifiers1[effect.Mod1_Index] : null;
+    effect.Mod2 = effect.Mod2_Index >= 0 ? effectModifiers2[effect.Mod2_Index] : null;
+    
+    Object.assign(copy, effect.Type);
+    
+    if (effect.Mod2 != null)
+    {
+        copy.text = effect.Mod2.text + " " + copy.text;
+        copy.formula = effect.Mod2.formula.replace("$", copy.formula);
     }
     
-    var mod1Index = element.attr("data-effectModifier1");
-    if (mod1Index >= 0)
+    if (effect.Mod1 != null)
     {
-        var mod1 = effectModifiers1[mod1Index];
-        copy.text = mod1.text + " " + copy.text;
-        copy.formula = mod1.formula.replace("$", copy.formula);
+        copy.text = effect.Mod1.text + " " + copy.text;
+        copy.formula = effect.Mod1.formula.replace("$", copy.formula);
     }
       
-    var X = parseFloat(element.attr("data-effectAmount"));
-    var Cost = GetCost();
-    var Rarity = GetRarity();
-    var result = Round(eval(copy.formula));
+    // 'X' and 'card' are referenced in eval()
+    var X = effect.Amount;
+    effect.Value = Round(eval(copy.formula));
+    // -
 
-    element.attr("data-text", copy.text.replace('X', Round(X)));
-    element.find("input").val(copy.text.replace('X', Round(X)) + " (" + copy.formula + " = " + result + ")");
+    effect.Text = copy.text.replace('X', Round(X));
+    effect.Details = effect.Text + " (" + copy.formula + " = " + effect.Value + ")";
 
-    return result;
-}
-
-function Export(total)
-{
-    var text = "[" + GetCost() + "-Cost " + GetRarityName();
-    var upgrade = GetUpgrade();
-    if (upgrade > 0)
-    {
-        text += " (+" + upgrade + ")";
-    }
-    text += "]\n";
-
-    var cardModifiers = GetCardModifiers();
-    for (var i = 0; i < cardModifiers.length; i++)
-    {
-        text += cardModifiers[i].text + ". ";
-    }
-
-    $('[name="EffectFormula"]').each(function (index, item)
-    {
-        text += item.getAttribute("data-text") + " ";
-    });
-
-    text += "\n[" + total + " / " + CalculateMaxThreshold() + "]";
-
-    $("#Export").val(text);
-}
-
-function CalculateTotal()
-{
-    var Total = 0;
-    $('[name="EffectFormula"]').each(function (index, item)
-    {
-        Total += RefreshFormula($(item));
-    });
-
-    var Cost = GetCost();
-    var Rarity = GetRarity();
-
-    var cardModifiers = GetCardModifiers();
-    for (var i = 0; i < cardModifiers.length; i++)
-    {
-        Total = eval(cardModifiers[i].formula);
-    }
-
-    $("#Total").val("Total: " + Round(Total) + " (Max Expected: " + CalculateMaxThreshold() + ")");
-
-    Export(Round(Total));
-}
-
-function CalculateMaxThreshold()
-{
-    var cost = GetCost();
-    var rarity = GetRarity();
-    var maxThreshold = cost;
-    if (rarity == 1) // Common
-    {
-        maxThreshold = (cost == 0 ? 0.5 : cost == 1 ? 1.35 : (cost * 0.94));
-    }
-    else if (rarity == 2) // Uncommon
-    {
-        maxThreshold = (cost == 0 ? 0.6 : cost == 1 ? 1.45 : (cost * 1.02));
-    }
-    else if (rarity == 3) // Rare
-    {
-        maxThreshold = (cost == 0 ? 0.9 : cost == 1 ? 1.7 : (cost * 1.06));
-    }
-
-    var upgrade = GetUpgrade() || 0;
-    if (upgrade > 0)
-    {
-        maxThreshold *= (1 + (upgrade * 0.25));
-    }
-
-    return Round(maxThreshold);
+    return effect;
 }

@@ -18,27 +18,27 @@ var cardModifiers =
 [
     {
         text: "Exhaust",
-        formula: "(Total) * (1 - (Rarity * 0.1))"
+        formula: "(card.Value) * (1 - (card.Rarity * 0.1))"
     },
     {
         text: "Ethereal",
-        formula: "(Total) * 0.9"
+        formula: "(card.Value) * 0.9"
     },
     {
         text: "Retain",
-        formula: "(Total) * 1.2"
+        formula: "(card.Value) * 1.2"
     },
     {
         text: "Innate",
-        formula: "(Total) * 1.1"
+        formula: "(card.Value) * 1.1"
     },
     {
         text: "Haste",
-        formula: "(Total) + 0.3"
+        formula: "(card.Value) + 0.3"
     },
     {
         text: "Autoplay",
-        formula: "(Total) * (1 - (Cost * 0.11))"
+        formula: "(card.Value) * (1 - (card.Cost * 0.11))"
     }
 ]
 
@@ -62,7 +62,7 @@ var effectModifiers2 =
 [
     {
         text: "On Synergy:",
-        formula: "($) * (1 - (0.1 * (Cost + 1)))"
+        formula: "($) * (1 - (0.1 * (card.Cost + 1)))"
     },
     {
         text: "On Exhaust:",
