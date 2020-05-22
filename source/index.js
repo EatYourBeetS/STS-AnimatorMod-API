@@ -168,7 +168,7 @@ function UpdateEffect(div, card)
     // -
 
     effect.Text = copy.text.replace('X', Round(X));
-    effect.Details = effect.Text + " (" + copy.formula + " = " + effect.Value + ")";
+    effect.Details = effect.Text + " {" + effect.Value + "}.";
 
     return effect;
 }

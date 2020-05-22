@@ -77,183 +77,183 @@ var effectModifiers2 =
 var effectTypes =
 [
     {
-        text: "Deal X damage.",
+        text: "Deal X damage",
         formula: "X * 0.111"
     },
     {
-        text: "Deal X damage (AoE).",
+        text: "Deal X damage (AoE)",
         formula: "X * 0.143"
     },
     {
-        text: "Gain X Block.",
+        text: "Gain X Block",
         formula: "X * 0.125"
     },
     {
-        text: "Draw X card(s).",
+        text: "Draw X card(s)",
         formula: "X * 0.35"
     },
     {
-        text: "Draw X card(s) next turn.",
+        text: "Draw X card(s) next turn",
         formula: "X * 0.24"
     },
     {
-        text: "Gain X Energy.",
+        text: "Gain X Energy",
         formula: "X * 0.96"
     },
     {
-        text: "Gain X Energy next turn.",
+        text: "Gain X Energy next turn",
         formula: "X * 0.55"
     },
     {
-        text: "Motivate X.",
+        text: "Motivate X",
         formula: "X * 0.8"
     },
     {
-        text: "Cycle X card(s).",
+        text: "Cycle X card(s)",
         formula: "X * 0.25"
     },
     {
-        text: "Exhaust X card(s).",
+        text: "Exhaust X card(s)",
         formula: "X * 0.25"
     },
     {
-        text: "Exhaust X random card(s).",
+        text: "Exhaust X random card(s)",
         formula: "X * 0.15"
     },
     {
-        text: "Discard X card(s).",
+        text: "Discard X card(s)",
         formula: "-0.05 * X"
     },
     {
-        text: "Discard X random card(s).",
+        text: "Discard X random card(s)",
         formula: "-0.12 * X"
     },
     {
-        text: "Apply X Weak.",
+        text: "Apply X Weak",
         formula: "X * 0.3"
     },
     {
-        text: "Apply X Weak (AoE).",
+        text: "Apply X Weak (AoE)",
         formula: "X * 0.5"
     },
     {
-        text: "Apply X Vulnerable.",
+        text: "Apply X Vulnerable",
         formula: "X * 0.3"
     },
     {
-        text: "Apply X Vulnerable (AoE).",
+        text: "Apply X Vulnerable (AoE)",
         formula: "X * 0.5"
     },
     {
-        text: "Apply X Poison.",
+        text: "Apply X Poison",
         formula: "X * 0.2"
     },
     {
-        text: "Apply X Poison (AoE).",
+        text: "Apply X Poison (AoE)",
         formula: "X * 0.35"
     },
     {
-        text: "Apply X Burning.",
+        text: "Apply X Burning",
         formula: "X * 0.28"
     },
     {
-        text: "Apply X Burning (AoE).",
+        text: "Apply X Burning (AoE)",
         formula: "X * 0.42"
     },
     {
-        text: "Take X Damage.",
+        text: "Take X Damage",
         formula: "-0.125 * X"
     },
     {
-        text: "Scry X.",
+        text: "Scry X",
         formula: "X * 0.22"
     },
     {
-        text: "Lose X HP.",
+        text: "Lose X HP",
         formula: "-0.22 * X"
     },
     {
-        text: "Special [X].",
+        text: "Special",
         formula: "X"
     },
     {
-        text: "Gain X Temp. HP.",
+        text: "Gain X Temp. HP",
         formula: "X * 0.16"
     },
     {
-        text: "Heal X HP [*].",
+        text: "Heal X HP [*]",
         formula: "X * 0.2"
     },
     {
-        text: "Gain X Metallicize [*].",
+        text: "Gain X Metallicize [*]",
         formula: "X * 0.4"
     },
     {
-        text: "Gain X Plated Armor [*].",
+        text: "Gain X Plated Armor [*]",
         formula: "X * 0.3"
     },
     {
-        text: "Gain X Force.",
+        text: "Gain X Force",
         formula: "X * X * 0.2"
     },
     {
-        text: "Gain X Agility.",
+        text: "Gain X Agility",
         formula: "X * X * 0.25"
     },
     {
-        text: "Gain X Intellect.",
+        text: "Gain X Intellect",
         formula: "X * X * 0.28"
     },
     {
-        text: "Boost X Force.",
+        text: "Boost X Force",
         formula: "(X * X * 0.2) + 0.12"
     },
     {
-        text: "Boost X Agility.",
+        text: "Boost X Agility",
         formula: "(X * X * 0.25) + 0.12"
     },
     {
-        text: "Boost X Intellect.",
+        text: "Boost X Intellect",
         formula: "(X * X * 0.28) + 0.12"
     },
     {
-        text: "Lose no Force next turn.",
+        text: "Lose no Force next turn",
         formula: "0.12"
     },
     {
-        text: "Lose no Agility next turn.",
+        text: "Lose no Agility next turn",
         formula: "0.13"
     },
     {
-        text: "Lose no Intellect next turn.",
+        text: "Lose no Intellect next turn",
         formula: "0.14"
     },
     {
-        text: "Channel X Frost.",
+        text: "Channel X Frost",
         formula: "X * 0.55"
     },
     {
-        text: "Channel X Lightning.",
+        text: "Channel X Lightning",
         formula: "X * 0.45"
     },
     {
-        text: "Channel X Fire.",
+        text: "Channel X Fire",
         formula: "X * 0.5"
     },
     {
-        text: "Channel X Earth.",
+        text: "Channel X Earth",
         formula: "X * 0.6"
     },
     {
-        text: "Channel X Aether.",
+        text: "Channel X Aether",
         formula: "X * 0.9"
     },
     {
-        text: "Channel X Plasma.",
+        text: "Channel X Plasma",
         formula: "X * 1.5"
     },
     {
-        text: "Channel X Dark.",
+        text: "Channel X Dark",
         formula: "X * 0.58"
     }
 ];
