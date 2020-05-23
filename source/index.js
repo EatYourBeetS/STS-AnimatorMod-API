@@ -189,7 +189,7 @@ function UpdateCard()
 
     $('[name="EffectFormula"]').each(function (_, item)
     {
-        var effect = UpdateEffect($(item));
+        var effect = UpdateEffect($(item), card);
         card.Effects.push(effect);
         card.Value += effect.Value;
     });
@@ -209,17 +209,48 @@ function UpdateEffect(div, card)
     var effect = {};
     var copy = {};
 
-    effect.Amount = Round(parseFloat(div.find("[name=EffectAmount").val() || 0));
-    effect.Type_Index = parseInt(div.find("[name=EffectType]").val());
-    effect.Mod1_Index = parseInt(div.find("[name=EffectModifier1]").val());
-    effect.Mod2_Index = parseInt(div.find("[name=EffectModifier2]").val());
+    var typeInput = div.find("[name=EffectType]");
+    var mod1Input = div.find("[name=EffectModifier1]");
+    var mod2Input = div.find("[name=EffectModifier2]");
+    var amountInput = div.find("[name=EffectAmount");
+
+    effect.Amount = Round(parseFloat(amountInput.val() || 0));
+    effect.Type_Index = parseInt(typeInput.val());
+    effect.Mod1_Index = parseInt(mod1Input.val());
+    effect.Mod2_Index = parseInt(mod2Input.val());
 
     effect.Type = effect.Type_Index >= 0 ? effectTypes[effect.Type_Index] : null;
     effect.Mod1 = effect.Mod1_Index >= 0 ? effectModifiers1[effect.Mod1_Index] : null;
     effect.Mod2 = effect.Mod2_Index >= 0 ? effectModifiers2[effect.Mod2_Index] : null;
     
-    Object.assign(copy, effect.Type);
-    
+    Object.assign(copy, effect.Type);  
+
+    if ('disable_x' in copy)
+    {
+        amountInput.attr("disabled", "disabled");
+        amountInput.val(effect.Amount = 1);
+    }
+    else
+    {
+        amountInput.removeAttr("disabled");
+    }
+
+    if ('disable_mod' in copy)
+    {
+        effect.Mod1_Index = -1;
+        mod1Input.attr("disabled", "disabled");
+        mod1Input.val(effect.Mod1 = null);
+
+        effect.Mod2_Index = -1;
+        mod2Input.attr("disabled", "disabled");
+        mod2Input.val(effect.Mod2 = null);
+    }
+    else
+    {
+        mod1Input.removeAttr("disabled");
+        mod2Input.removeAttr("disabled");
+    }
+
     if (effect.Mod2 != null)
     {
         copy.text = effect.Mod2.text + " " + copy.text;

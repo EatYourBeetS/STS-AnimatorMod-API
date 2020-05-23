@@ -238,27 +238,33 @@ var effectTypes =
     },
     {
         text: "Enter Force Stance [*]",
-        formula: "0.51"
+        formula: "0.51",
+        disable_x: true
     },
     {
         text: "Enter Agility Stance [*]",
-        formula: "0.58"
+        formula: "0.58",
+        disable_x: true
     },
     {
         text: "Enter Intellect Stance [*]",
-        formula: "0.64"
+        formula: "0.64",
+        disable_x: true
     },
     {
         text: "Lose no Force next turn",
-        formula: "0.12"
+        formula: "0.12",
+        disable_x: true
     },
     {
         text: "Lose no Agility next turn",
-        formula: "0.13"
+        formula: "0.13",
+        disable_x: true
     },
     {
         text: "Lose no Intellect next turn",
-        formula: "0.14"
+        formula: "0.14",
+        disable_x: true
     },
     {
         text: "Channel X Frost",
@@ -318,7 +324,8 @@ var effectTypes =
     },
     {
         text: "Skip the enemy turn [*]",
-        formula: "X * 5.3"
+        formula: "5.3",
+        disable_x: true
     },
     {
         text: "Gain X Intangible [*]",
@@ -335,5 +342,11 @@ var effectTypes =
     {
         text: "Gain X Blur",
         formula: "X * 0.66"
+    },
+    {
+        text: "Permanently Upgrade Itself",
+        formula: "(card.Upgrade + 1) * 0.28",
+        disable_mod: true,
+        disable_x: true
     }
 ];
