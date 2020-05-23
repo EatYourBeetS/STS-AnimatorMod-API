@@ -9,9 +9,12 @@
     <title>Card Value Calculator</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <!--link rel='stylesheet' href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css"/>
     <link rel='stylesheet' href="source/index.css"/>
 
+    <script src="https://kit.fontawesome.com/632e046160.js" crossorigin="anonymous"></script>
+    
     <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type='text/javascript' src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
     <script type='text/javascript' src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
@@ -55,16 +58,18 @@
 
         <hr class="col-12"/>
 
-        <div class="form-group col-lg-2 col-sm-4">
-            <input type="button" value="Add" class="form-control btn btn-success" onclick="AddFormula()"/>
+        <div class="form-group col-2">
+            <input type="button" value="Add" class="form-control btn btn-success" onclick="AddFormula(true)"/>
         </div>
 
-        <div class="form-group col-lg-2 col-sm-4">
-            <input type="button" value="Refresh" class="form-control btn btn-primary" onclick="RefreshAll()"/>
-        </div>
-
-        <div class="form-group offset-lg-6 col-lg-2 col-sm-4">
-            <input type="button" value="Reset" class="form-control btn btn-danger" onclick="location.reload(true);"/>
+        <div class="form-group col-10">
+            <div class="input-group">
+                <input type="text" class="form-control prevent-refresh" placeholder="Paste or Copy card json here" id="CardJsonData"/>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" onclick="Import()"><span class="fa fa-fw fa-refresh"></span></button>
+                    <button class="btn btn-danger" onclick="location.reload(true);"><span class="fa fa-fw fa-trash-alt"></span></button>
+                </div>
+            </div>
         </div>
 
         <div class="form-group col-12">
@@ -102,10 +107,10 @@
         </div>
 
         <br class="col-12"/>
-        <hr class="col-12" id="TemplateRoot"/>
+        <hr class="col-12"/>
 
-        <div class="form-group col-12">
-            <textarea readonly="readonly" class="form-control" rows="4" id="Export"></textarea>
+        <div class="form-group col-12" id="TemplateRoot">
+            <textarea readonly="readonly" class="form-control" rows="4" id="Summary"></textarea>
         </div>
     </div>
 
@@ -120,11 +125,20 @@
 </style>
 
 <script>
+
+    var canRefresh = true;
+
     $(document).ready(function() 
     {
         Setup();
     });
 
-    $(document.body).on("change", () => RefreshAll());
+    $(document.body).on("change", function(ev)
+    {
+        if (canRefresh && !ev.target.classList.contains("prevent-refresh"))
+        {
+            RefreshAll();
+        }
+    });
 </script>
 </html>

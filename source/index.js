@@ -29,14 +29,18 @@ function Round(number)
     return Number(parseFloat(number).toFixed(3));
 }
 
-function AddFormula()
+function AddFormula(refresh)
 {
-    var res = $('#EffectTemplate').clone().insertAfter("#TemplateRoot");
+    var res = $('#EffectTemplate').clone().insertBefore("#TemplateRoot");
     res.find('.advancedDropdown').select2({ containerCssClass: "shadow-xs-inset" });
     res.removeAttr('id');
     res.removeAttr("hidden");
     res.attr("name", "EffectFormula");
-    RefreshAll();
+    if (refresh)
+    {
+        RefreshAll();
+    }
+    return res;
 }
 
 function RefreshAll()
@@ -77,10 +81,80 @@ function RefreshAll()
         }
     }
 
-    $("#Export").val(card.Details);
+    $("#Summary").val(card.Details);
 
-    console.log("Refreshing:")
-    console.log(card);
+    Export(card);
+}
+
+function Import()
+{
+    var json = $("#CardJsonData").val();
+    if (json == null || json.length == 0)
+    {
+        return;
+    }
+    
+    var obj;
+    try
+    {
+        obj = JSON.parse(json);
+    }
+    catch (ex)
+    {
+        alert("Invalid Json");
+        return;
+    }
+    
+    canRefresh = false;
+
+    $('#CardCost').val(obj.Cost);
+    $('#CardUpgrade').val(obj.Upgrade);
+    $('#CardRarity').val(obj.Rarity);
+    $('#CardModifiers').val(obj.Modifiers).trigger('change');
+    $('[name="EffectFormula"]').remove();
+    
+    for (var i = 0; i < obj.Effects.length; i++)
+    {
+        var effect = obj.Effects[i];
+        var div = AddFormula(false);
+        div.find("[name=EffectAmount").val(effect.Amount);
+        div.find("[name=EffectType").val(effect.Type);
+        div.find("[name=EffectModifier1").val(effect.Mod1);
+        div.find("[name=EffectModifier2").val(effect.Mod2);
+    }
+    
+    canRefresh = true;
+    RefreshAll();
+}
+
+function Export(card)
+{
+    var obj = {};
+
+    obj.Cost = card.Cost;
+    obj.Rarity = card.Rarity - 1;
+    obj.Upgrade = card.Upgrade;
+    obj.Modifiers = card.Modifiers.map(m => cardModifiers.indexOf(m));
+    obj.Effects = [];
+    for (var i = 0; i < card.Effects.length; i++)
+    {
+        var effect = card.Effects[i];
+        obj.Effects.push(
+        {
+            Amount: effect.Amount,
+            Mod1: effect.Mod1_Index,
+            Mod2: effect.Mod2_Index,
+            Type: effect.Type_Index
+        });
+    }
+
+    var json = JSON.stringify(obj);
+
+    canRefresh = false;
+    $("#CardJsonData").val(json);
+    canRefresh = true;
+
+    return json;
 }
 
 function UpdateCard()
@@ -139,7 +213,7 @@ function UpdateEffect(div, card)
     var effect = {};
     var copy = {};
 
-    effect.Amount = parseFloat(div.find("[name=EffectAmount").val() || 0).toFixed(3);
+    effect.Amount = Round(parseFloat(div.find("[name=EffectAmount").val() || 0));
     effect.Type_Index = parseInt(div.find("[name=EffectType]").val());
     effect.Mod1_Index = parseInt(div.find("[name=EffectModifier1]").val());
     effect.Mod2_Index = parseInt(div.find("[name=EffectModifier2]").val());

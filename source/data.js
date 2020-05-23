@@ -71,6 +71,14 @@ var effectModifiers2 =
     {
         text: "On Discard:",
         formula: "($) * 0.8"
+    },
+    {
+        text: "In Stance:",
+        formula: "($) * 0.5"
+    },
+    {
+        text: "Not In Stance:",
+        formula: "($) * 0.8"
     }
 ];
 
@@ -191,6 +199,18 @@ var effectTypes =
     {
         text: "Gain X Plated Armor [*]",
         formula: "X * 0.3"
+    },
+    {
+        text: "X Force Scaling",
+        formula: "0.15 * (X ** 1.4)"
+    },
+    {
+        text: "X Agility Scaling",
+        formula: "0.15 * (X ** 1.4)"
+    },
+    {
+        text: "X Intellect Scaling",
+        formula: "0.15 * (X ** 1.4)"
     },
     {
         text: "Gain X Force",
