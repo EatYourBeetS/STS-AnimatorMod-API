@@ -36,10 +36,12 @@ function AddFormula(refresh)
     res.removeAttr('id');
     res.removeAttr("hidden");
     res.attr("name", "EffectFormula");
+
     if (refresh)
     {
         RefreshAll();
     }
+
     return res;
 }
 
@@ -87,16 +89,16 @@ function RefreshAll()
 }
 
 function Import()
-{
-    var json = $("#CardJsonData").val();
-    if (json == null || json.length == 0)
-    {
-        return;
-    }
-    
+{   
     var obj;
     try
     {
+        var json = $("#CardJsonData").val();
+        if (json == null || json.length == 0)
+        {
+            return;
+        }
+
         obj = JSON.parse(json);
     }
     catch (ex)
@@ -107,20 +109,20 @@ function Import()
     
     canRefresh = false;
 
-    $('#CardCost').val(obj.Cost);
-    $('#CardUpgrade').val(obj.Upgrade);
-    $('#CardRarity').val(obj.Rarity);
-    $('#CardModifiers').val(obj.Modifiers).trigger('change');
+    $('#CardCost').val(obj.C);
+    $('#CardUpgrade').val(obj.U);
+    $('#CardRarity').val(obj.R);
+    $('#CardModifiers').val(obj.M).trigger('change');
     $('[name="EffectFormula"]').remove();
     
-    for (var i = 0; i < obj.Effects.length; i++)
+    for (var i = 0; i < obj.E.length; i++)
     {
-        var effect = obj.Effects[i];
+        var effect = obj.E[i];
         var div = AddFormula(false);
-        div.find("[name=EffectAmount").val(effect.Amount);
-        div.find("[name=EffectType").val(effect.Type);
-        div.find("[name=EffectModifier1").val(effect.Mod1);
-        div.find("[name=EffectModifier2").val(effect.Mod2);
+        div.find("[name=EffectAmount").val(effect.X);
+        div.find("[name=EffectType").val(effect.T);
+        div.find("[name=EffectModifier1").val(effect.M1);
+        div.find("[name=EffectModifier2").val(effect.M2);
     }
     
     canRefresh = true;
@@ -131,30 +133,24 @@ function Export(card)
 {
     var obj = {};
 
-    obj.Cost = card.Cost;
-    obj.Rarity = card.Rarity - 1;
-    obj.Upgrade = card.Upgrade;
-    obj.Modifiers = card.Modifiers.map(m => cardModifiers.indexOf(m));
-    obj.Effects = [];
+    obj.C = card.Cost;
+    obj.R = card.Rarity - 1;
+    obj.U = card.Upgrade;
+    obj.M = card.Modifiers.map(m => cardModifiers.indexOf(m));
+    obj.E = [];
     for (var i = 0; i < card.Effects.length; i++)
     {
         var effect = card.Effects[i];
-        obj.Effects.push(
+        obj.E.push(
         {
-            Amount: effect.Amount,
-            Mod1: effect.Mod1_Index,
-            Mod2: effect.Mod2_Index,
-            Type: effect.Type_Index
+            X: effect.Amount,
+            M1: effect.Mod1_Index,
+            M2: effect.Mod2_Index,
+            T: effect.Type_Index
         });
     }
-
-    var json = JSON.stringify(obj);
-
-    canRefresh = false;
-    $("#CardJsonData").val(json);
-    canRefresh = true;
-
-    return json;
+    
+    return $("#CardJsonData").val(JSON.stringify(obj));
 }
 
 function UpdateCard()
