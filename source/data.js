@@ -106,7 +106,7 @@ var effectTypes =
     },
     {
         text: "Gain X Energy",
-        formula: "X * 0.96"
+        formula: "X * 0.89"
     },
     {
         text: "Gain X Energy next turn",
