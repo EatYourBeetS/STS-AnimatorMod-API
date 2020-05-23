@@ -120,7 +120,7 @@ function Import()
         var effect = obj.E[i];
         var div = AddFormula(false);
         div.find("[name=EffectAmount").val(effect.X);
-        div.find("[name=EffectType").val(effect.T);
+        div.find("[name=EffectType").val(effect.T).trigger('change');
         div.find("[name=EffectModifier1").val(effect.M1);
         div.find("[name=EffectModifier2").val(effect.M2);
     }
