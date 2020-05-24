@@ -57,10 +57,6 @@ var effectModifiers1 =
     {
         text: "Starter.",
         formula: "X * 0.8"
-    },
-    {
-        text: "Start of Combat [*].",
-        formula: "X * 0.75"
     }
 ];
 
@@ -89,6 +85,10 @@ var effectModifiers2 =
     {
         text: "When Drawn:",
         formula: "X * (1 + (card.Cost * 0.24))"
+    },
+    {
+        text: "Start of Combat [*]:",
+        formula: "X * 0.75"
     }
 ];
 
