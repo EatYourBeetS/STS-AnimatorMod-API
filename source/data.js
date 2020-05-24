@@ -1,3 +1,5 @@
+var lastCardJson = "";
+
 var cardRarities =
 [
     {

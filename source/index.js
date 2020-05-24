@@ -23,12 +23,25 @@ function Setup()
     SetDropdownOptions("CardRarity", cardRarities);
     $("#CardModifiers").select2({ containerCssClass: "shadow-xs-inset" });
 
+    window.addEventListener('popstate', _ => ImportUrl(true));
+
+    ImportUrl(false);
+}
+
+function ImportUrl(reset)
+{
     var search = new URLSearchParams(window.location.search);
-    var json = search ? search.get("card") : null;
-    if (json)
+    var b64 = search ? search.get("card") : null;
+    if (b64)
     {
-        $("#CardJsonData").val(json);
+        lastCardJson = atob(b64);
+        $("#CardJsonData").val(lastCardJson);
         Import();
+    }
+    else if (reset)
+    {
+        $("#CardJsonData").val('{"C":1,"R":0,"U":0,"E":[]}');
+        RefreshAll();
     }
 }
 
@@ -183,8 +196,23 @@ function Export(card)
 
         obj.E.push(temp);
     }
-    
-    return $("#CardJsonData").val(JSON.stringify(obj));
+   
+    var json = JSON.stringify(obj);
+    if (json != lastCardJson)
+    {
+        var url = location.protocol + '//' + location.host + location.pathname + "?card=" + btoa(json);
+        history.pushState(history.state, "", url);
+        lastCardJson = json;
+        console.log("Saving Url");
+        console.log(url);
+    }
+
+    return $("#CardJsonData").val(json);
+}
+
+function ResetAll()
+{
+    window.location = window.location.href.split("?")[0];
 }
 
 function UpdateCard()

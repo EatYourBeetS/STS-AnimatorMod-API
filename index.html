@@ -37,7 +37,6 @@
         <div class="form-group col-lg-2 col-sm-6">
             <label class="form-label"><b>Rarity</b></label>
             <select class="form-control shadow-xs-inset" id="CardRarity">
-                <option disabled="disabled">-</option>
             </select>
         </div>
 
@@ -53,8 +52,7 @@
 
         <div class="form-group col-lg-8 col-sm-12">
             <label class="form-label"><b>Card Modifiers</b></label>
-            <select class="advancedDropdown form-control shadow-xs-inset" multiple="multiple" id="CardModifiers">
-            </select>
+            <select class="advancedDropdown form-control shadow-xs-inset" multiple="multiple" id="CardModifiers"></select>
         </div>
 
         <hr class="col-12"/>
@@ -71,7 +69,7 @@
                 <input type="text" class="form-control prevent-refresh" placeholder="Card Json" id="CardJsonData" onkeyup="if(event.key=='Enter')Import();"/>
                 <div class="input-group-append">
                     <button class="btn btn-primary" onclick="Import()"><span class="fa fa-fw fa-refresh"></span></button>
-                    <button class="btn btn-danger" onclick="location.reload(true);"><span class="fa fa-fw fa-trash-alt"></span></button>
+                    <button class="btn btn-danger" onclick="ResetAll()"><span class="fa fa-fw fa-trash-alt"></span></button>
                 </div>
             </div>
         </div>
