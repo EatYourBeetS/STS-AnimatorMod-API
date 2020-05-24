@@ -32,7 +32,7 @@ function Round(number)
 function AddFormula(refresh)
 {
     var res = $('#EffectTemplate').clone().insertBefore("#TemplateRoot");
-    res.find('.advancedDropdown').select2({ containerCssClass: "shadow-xs-inset" });
+    res.find('.advancedDropdown').select2({ containerCssClass: "shadow-xs-inset", sorter: d => d.sort((a, b) => a.text < b.text ? -1 : a.text > b.text ? 1 : 0)});
     res.removeAttr('id');
     res.removeAttr("hidden");
     res.attr("name", "EffectFormula");

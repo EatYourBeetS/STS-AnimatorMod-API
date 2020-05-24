@@ -67,7 +67,7 @@
                 <div class="input-group-prepend">
                     <button class="btn btn-primary" onclick="document.getElementById('CardJsonData').select();"><span class="fa fa-fw fa-file-alt"></span></button>
                 </div>
-                <input type="text" class="form-control prevent-refresh" placeholder="Card Json" id="CardJsonData"/>
+                <input type="text" class="form-control prevent-refresh" placeholder="Card Json" id="CardJsonData" onkeyup="if(event.key=='Enter')Import();"/>
                 <div class="input-group-append">
                     <button class="btn btn-primary" onclick="Import()"><span class="fa fa-fw fa-refresh"></span></button>
                     <button class="btn btn-danger" onclick="location.reload(true);"><span class="fa fa-fw fa-trash-alt"></span></button>
