@@ -119,10 +119,13 @@ function Import()
     {
         var effect = obj.E[i];
         var div = AddFormula(false);
-        div.find("[name=EffectAmount").val(effect.X);
-        div.find("[name=EffectType").val(effect.T).trigger('change');
-        div.find("[name=EffectModifier1").val(effect.M1);
-        div.find("[name=EffectModifier2").val(effect.M2);
+        div.find("[name=EffectAmount]").val(effect.X);
+        div.find("[name=EffectType]").val(effect.T).trigger('change');
+        div.find("[name=EffectModifier1]").val(effect.M1);
+        div.find("[name=EffectModifier2]").val(effect.M2);
+        div.find("[name=SpecialModifier]").val(effect.SP);
+        div.find("[name=Notes]").val(effect.SN);
+        div.find(".collapse").collapse(effect.SP || effect.SN ? "show" : "hide");
     }
     
     canRefresh = true;
@@ -136,18 +139,41 @@ function Export(card)
     obj.C = card.Cost;
     obj.R = card.Rarity - 1;
     obj.U = card.Upgrade;
-    obj.M = card.Modifiers.map(m => cardModifiers.indexOf(m));
+
+    var mods = card.Modifiers.map(m => cardModifiers.indexOf(m));
+    if (mods && mods.length > 0)
+    {
+        obj.M = mods;
+    }
+
     obj.E = [];
+
     for (var i = 0; i < card.Effects.length; i++)
     {
         var effect = card.Effects[i];
-        obj.E.push(
+        var temp = {};
+
+        temp.X = effect.Amount;
+        temp.T = effect.Type_Index;
+
+        if (effect.Mod1_Index >= 0)
         {
-            X: effect.Amount,
-            M1: effect.Mod1_Index,
-            M2: effect.Mod2_Index,
-            T: effect.Type_Index
-        });
+            temp.M1 = effect.Mod1_Index;
+        }
+        if (effect.Mod2_Index >= 0)
+        {
+            temp.M2 = effect.Mod2_Index;
+        }
+        if (effect.SpecialModifier)
+        {
+            temp.SP = effect.SpecialModifier;
+        }
+        if (effect.Notes)
+        {
+            temp.SN = effect.Notes;
+        }
+
+        obj.E.push(temp);
     }
     
     return $("#CardJsonData").val(JSON.stringify(obj));
@@ -220,12 +246,16 @@ function UpdateEffect(div, card)
     var typeInput = div.find("[name=EffectType]");
     var mod1Input = div.find("[name=EffectModifier1]");
     var mod2Input = div.find("[name=EffectModifier2]");
-    var amountInput = div.find("[name=EffectAmount");
+    var amountInput = div.find("[name=EffectAmount]");
+    var specialMod = div.find("[name=SpecialModifier]");
+    var notes = div.find("[name=Notes]");
 
     effect.Amount = Round(parseFloat(amountInput.val() || 0));
     effect.Type_Index = parseInt(typeInput.val());
     effect.Mod1_Index = parseInt(mod1Input.val());
     effect.Mod2_Index = parseInt(mod2Input.val());
+    effect.SpecialModifier = specialMod.val();
+    effect.Notes = notes.val();
 
     effect.Type = effect.Type_Index >= 0 ? effectTypes[effect.Type_Index] : null;
     effect.Mod1 = effect.Mod1_Index >= 0 ? effectModifiers1[effect.Mod1_Index] : null;
@@ -258,24 +288,39 @@ function UpdateEffect(div, card)
         mod1Input.removeAttr("disabled");
         mod2Input.removeAttr("disabled");
     }
-
-    if (effect.Mod2 != null)
-    {
-        copy.text = effect.Mod2.text + " " + copy.text;
-        copy.formula = effect.Mod2.formula.replace("$", copy.formula);
-    }
-    
-    if (effect.Mod1 != null)
-    {
-        copy.text = effect.Mod1.text + " " + copy.text;
-        copy.formula = effect.Mod1.formula.replace("$", copy.formula);
-    }
       
     // 'X' and 'card' are referenced in eval()
     var X = effect.Amount;
-    effect.Value = Round(eval(copy.formula));
+
+    X = eval(copy.formula);
+
+    specialMod.removeClass("border-danger");
+    if (effect.SpecialModifier)
+    {
+        try
+        {
+            X = eval(effect.SpecialModifier);
+        }
+        catch (ex)
+        {
+            specialMod.addClass("border-danger");
+        }
+    }
+
+    if (effect.Mod1)
+    {
+        copy.text = effect.Mod1.text + " " + copy.text;
+        X = eval(effect.Mod1.formula);
+    }
+    
+    if (effect.Mod2)
+    {
+        copy.text = effect.Mod2.text + " " + copy.text;
+        X = eval(effect.Mod2.formula);
+    }
     // -
 
+    effect.Value = Round(X);
     effect.Text = copy.text.replace('X', Round(X));
     effect.Details = effect.Text + " {" + effect.Value + "}.";
 

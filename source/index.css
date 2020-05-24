@@ -307,3 +307,7 @@ textarea {
         .select2-selection--multiple .select2-selection__choice__remove:hover {
             color: #66b0ff !important;
         }
+
+.fa-input {
+    font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }

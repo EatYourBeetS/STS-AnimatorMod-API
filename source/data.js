@@ -46,15 +46,15 @@ var effectModifiers1 =
 [
     {
         text: "Limited.",
-        formula: "($) * 0.8"
+        formula: "X * 0.8"
     },
     {
         text: "Semi-Limited.",
-        formula: "($) * 0.9"
+        formula: "X * 0.9"
     },
     {
         text: "Starter.",
-        formula: "($) * 0.8"
+        formula: "X * 0.8"
     }
 ];
 
@@ -62,23 +62,23 @@ var effectModifiers2 =
 [
     {
         text: "On Synergy:",
-        formula: "($) * (1 - (0.1 * (card.Cost + 1)))"
+        formula: "X * (1 - (0.1 * (card.Cost + 1)))"
     },
     {
         text: "On Exhaust:",
-        formula: "($) * 0.5"
+        formula: "X * 0.5"
     },
     {
         text: "On Discard:",
-        formula: "($) * 0.8"
+        formula: "X * 0.8"
     },
     {
         text: "In Stance:",
-        formula: "($) * 0.5"
+        formula: "X * 0.5"
     },
     {
         text: "Not In Stance:",
-        formula: "($) * 0.8"
+        formula: "X * 0.8"
     }
 ];
 
