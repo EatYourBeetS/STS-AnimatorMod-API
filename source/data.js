@@ -83,6 +83,10 @@ var effectModifiers2 =
     {
         text: "Not In Stance:",
         formula: "X * 0.8"
+    },
+    {
+        text: "When Drawn:",
+        formula: "X * (1 + (card.Cost * 0.24))"
     }
 ];
 
