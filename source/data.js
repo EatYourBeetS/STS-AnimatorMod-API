@@ -348,5 +348,23 @@ var effectTypes =
         formula: "(card.Upgrade + 1) * 0.28",
         disable_mod: true,
         disable_x: true
+    },
+    {
+        text: "Shapeshifter",
+        formula: "0.4 * (1 - (card.Cost / 3)) + 0.18",
+        disable_mod: true,
+        disable_x: true
+    },
+    {
+        text: "Martial Artist",
+        formula: "0.16 * (1 - (card.Cost / 3)) + 0.09",
+        disable_mod: true,
+        disable_x: true
+    },
+    {
+        text: "Spellcaster",
+        formula: "0.16 * (1 - (card.Cost / 3)) + 0.14",
+        disable_mod: true,
+        disable_x: true
     }
 ];

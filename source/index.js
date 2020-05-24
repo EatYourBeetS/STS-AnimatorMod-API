@@ -185,7 +185,14 @@ function UpdateCard()
         card.MaxValue = (cost == 0 ? 0.86 : cost == 1 ? 1.7 : (cost * 1.06));
     }
 
-    card.MaxValue = Round(card.Upgrade <= 0 ? card.MaxValue : (card.MaxValue * (1 + (card.Upgrade * (cost == 0 ? 0.45 : 0.25)))));
+    if (card.Upgrade > 0)
+    {
+        card.MaxValue = card.Upgrade <= 0 ? card.MaxValue : (card.MaxValue * (1 + (card.Upgrade * 0.25)));
+        if (card.Cost == 0)
+        {
+            card.MaxValue += 0.12;
+        }
+    }
 
     $('[name="EffectFormula"]').each(function (_, item)
     {
@@ -199,6 +206,7 @@ function UpdateCard()
         card.Value = eval(card.Modifiers[i].formula);
     }
 
+    card.MaxValue = Round(card.MaxValue);
     card.Value = Round(card.Value);
 
     return card;
