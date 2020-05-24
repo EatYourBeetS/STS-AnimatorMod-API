@@ -351,7 +351,7 @@ var effectTypes =
     },
     {
         text: "Shapeshifter",
-        formula: "0.4 * (1 - (card.Cost / 3)) + 0.18",
+        formula: "0.35 * (1 - (card.Cost / 3)) + 0.15",
         disable_mod: true,
         disable_x: true
     },
