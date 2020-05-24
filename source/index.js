@@ -174,18 +174,18 @@ function UpdateCard()
     var cost = card.Cost;
     if (card.Rarity == 1) // Common
     {
-        card.MaxValue = (cost == 0 ? 0.5 : cost == 1 ? 1.35 : (cost * 0.94));
+        card.MaxValue = (cost == 0 ? 0.56 : cost == 1 ? 1.35 : (cost * 0.94));
     }
     else if (card.Rarity  == 2) // Uncommon
     {
-        card.MaxValue = (cost == 0 ? 0.6 : cost == 1 ? 1.45 : (cost * 1.02));
+        card.MaxValue = (cost == 0 ? 0.66 : cost == 1 ? 1.45 : (cost * 1.02));
     }
     else if (card.Rarity  == 3) // Rare
     {
-        card.MaxValue = (cost == 0 ? 0.9 : cost == 1 ? 1.7 : (cost * 1.06));
+        card.MaxValue = (cost == 0 ? 0.86 : cost == 1 ? 1.7 : (cost * 1.06));
     }
 
-    card.MaxValue = Round(card.Upgrade <= 0 ? card.MaxValue : (card.MaxValue * (1 + (card.Upgrade * 0.25))));
+    card.MaxValue = Round(card.Upgrade <= 0 ? card.MaxValue : (card.MaxValue * (1 + (card.Upgrade * (cost == 0 ? 0.45 : 0.25)))));
 
     $('[name="EffectFormula"]').each(function (_, item)
     {

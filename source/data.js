@@ -130,11 +130,11 @@ var effectTypes =
     },
     {
         text: "Discard X card(s)",
-        formula: "-0.05 * X"
+        formula: "-0.05 * X * X"
     },
     {
         text: "Discard X random card(s)",
-        formula: "-0.12 * X"
+        formula: "-0.13 * X * X"
     },
     {
         text: "Apply X Weak",
