@@ -22,6 +22,14 @@ function Setup()
     SetDropdownOptions("CardModifiers", cardModifiers);
     SetDropdownOptions("CardRarity", cardRarities);
     $("#CardModifiers").select2({ containerCssClass: "shadow-xs-inset" });
+
+    var search = new URLSearchParams(window.location.search);
+    var json = search ? search.get("card") : null;
+    if (json)
+    {
+        $("#CardJsonData").val(json);
+        Import();
+    }
 }
 
 function Round(number)
