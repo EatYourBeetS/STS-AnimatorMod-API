@@ -130,11 +130,11 @@ var effectTypes =
     },
     {
         text: "Discard X card(s)",
-        formula: "-0.05 * X * X"
+        formula: "-0.06 * (X ** 2)"
     },
     {
         text: "Discard X random card(s)",
-        formula: "-0.13 * X * X"
+        formula: "-0.13 * (X ** 2)"
     },
     {
         text: "Apply X Weak",
@@ -174,7 +174,7 @@ var effectTypes =
     },
     {
         text: "Scry X",
-        formula: "X * 0.22"
+        formula: "(X ** 1.3) * 0.16"
     },
     {
         text: "Lose X HP",
@@ -202,39 +202,39 @@ var effectTypes =
     },
     {
         text: "X Force Scaling",
-        formula: "0.15 * (X ** 1.4)"
+        formula: "(X ** 1.4) * 0.15"
     },
     {
         text: "X Agility Scaling",
-        formula: "0.15 * (X ** 1.4)"
+        formula: "(X ** 1.4) * 0.15"
     },
     {
         text: "X Intellect Scaling",
-        formula: "0.15 * (X ** 1.4)"
+        formula: "(X ** 1.4) * 0.15"
     },
     {
         text: "Gain X Force",
-        formula: "X * X * 0.2"
+        formula: "(X ** 1.8) * 0.2"
     },
     {
         text: "Gain X Agility",
-        formula: "X * X * 0.25"
+        formula: "(X ** 1.8) * 0.25"
     },
     {
         text: "Gain X Intellect",
-        formula: "X * X * 0.28"
+        formula: "(X ** 1.8) * 0.28"
     },
     {
         text: "Boost X Force",
-        formula: "(X * X * 0.2) + 0.12"
+        formula: "((X ** 1.8) * 0.2) + 0.12"
     },
     {
         text: "Boost X Agility",
-        formula: "(X * X * 0.25) + 0.12"
+        formula: "((X ** 1.8) * 0.25) + 0.12"
     },
     {
         text: "Boost X Intellect",
-        formula: "(X * X * 0.28) + 0.12"
+        formula: "((X ** 1.8) * 0.28) + 0.12"
     },
     {
         text: "Enter Force Stance [*]",
