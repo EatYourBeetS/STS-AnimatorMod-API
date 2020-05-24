@@ -55,6 +55,10 @@ var effectModifiers1 =
     {
         text: "Starter.",
         formula: "X * 0.8"
+    },
+    {
+        text: "Start of Combat [*].",
+        formula: "X * 0.75"
     }
 ];
 
@@ -351,7 +355,7 @@ var effectTypes =
     },
     {
         text: "Shapeshifter",
-        formula: "0.35 * (1 - (card.Cost / 3)) + 0.15",
+        formula: "0.4 * (1 - (card.Cost / 3)) + 0.1",
         disable_mod: true,
         disable_x: true
     },
