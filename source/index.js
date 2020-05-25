@@ -244,7 +244,7 @@ function UpdateCard()
     }
     else if (card.Rarity  == 3) // Rare
     {
-        card.MaxValue = (cost == 0 ? 0.86 : cost == 1 ? 1.7 : (cost * 1.06));
+        card.MaxValue = (cost == 0 ? 0.86 : cost == 1 ? 1.55 : (cost * 1.06));
     }
 
     if (card.Upgrade > 0)
