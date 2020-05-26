@@ -376,5 +376,13 @@ var effectTypes =
         formula: "0.16 * (1 - (card.Cost / 3)) + 0.14",
         disable_mod: true,
         disable_x: true
+    },
+    {
+        text: "Upgrade X card(s)",
+        formula: "X * 0.42"
+    },
+    {
+        text: "Upgrade X random card(s)",
+        formula: "X * 0.32"
     }
 ];
