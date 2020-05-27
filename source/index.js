@@ -328,32 +328,64 @@ function UpdateEffect(div, card)
     // 'X' and 'card' are referenced in eval()
     var X = effect.Amount;
 
-    X = eval(copy.formula);
-
-    specialMod.removeClass("border-danger");
-    if (effect.SpecialModifier)
-    {
-        try
+    var calc = 
+    [
         {
-            X = eval(effect.SpecialModifier);
-        }
-        catch (ex)
+            priority: (copy.priority || 10),
+            apply: () => 
+            {
+                 X = eval(copy.formula); 
+            },
+        },
         {
-            specialMod.addClass("border-danger");
-        }
+            priority: 0, // Todo: Add a way to insert priority
+            apply: () =>
+            {
+                specialMod.removeClass("border-danger");
+                if (effect.SpecialModifier)
+                {
+                    try
+                    {
+                        X = eval(effect.SpecialModifier);
+                    }
+                    catch (ex)
+                    {
+                        specialMod.addClass("border-danger");
+                    }
+                }
+            },
+        },
+        {
+            priority: ((effect.Mod2 && effect.Mod2.priority) ? effect.Mod2.priority : -1),
+            apply: () =>        
+            { 
+                if (effect.Mod2)
+                {
+                    copy.text = effect.Mod2.text + " " + copy.text;
+                    X = eval(effect.Mod2.formula);
+                }
+            },
+        },
+        {
+            priority: ((effect.Mod1 && effect.Mod1.priority) ? effect.Mod1.priority : -1),
+            apply: () =>        
+            { 
+                if (effect.Mod1)
+                {
+                    copy.text = effect.Mod1.text + " " + copy.text;
+                    X = eval(effect.Mod1.formula);
+                }
+            },
+        },
+    ];
+
+    calc.sort((a, b) => b.priority - a.priority);
+
+    for (var i = 0; i < calc.length; i++)
+    {
+        calc[i].apply();
     }
 
-    if (effect.Mod1)
-    {
-        copy.text = effect.Mod1.text + " " + copy.text;
-        X = eval(effect.Mod1.formula);
-    }
-    
-    if (effect.Mod2)
-    {
-        copy.text = effect.Mod2.text + " " + copy.text;
-        X = eval(effect.Mod2.formula);
-    }
     // -
 
     effect.Value = Round(X);

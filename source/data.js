@@ -89,6 +89,11 @@ var effectModifiers2 =
     {
         text: "Start of Combat [*]:",
         formula: "X * 0.75"
+    },
+    {
+        text: "Reload:",
+        formula: "X * 2.135",
+        priority: 20
     }
 ];
 
