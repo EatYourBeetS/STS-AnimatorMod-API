@@ -24,7 +24,7 @@ var cardModifiers =
     },
     {
         text: "Ethereal",
-        formula: "(card.Value) * 0.9"
+        formula: "(card.Value) * (1 - (card.Cost * 0.05))"
     },
     {
         text: "Retain",
