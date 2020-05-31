@@ -120,8 +120,8 @@ var effectTypes =
         formula: "X * 0.24"
     },
     {
-        text: "Gain X Energy",
-        formula: "X * 0.89"
+        text: "Gain X Energy [*]",
+        formula: "X * 0.82"
     },
     {
         text: "Gain X Energy next turn",
@@ -129,7 +129,7 @@ var effectTypes =
     },
     {
         text: "Motivate X",
-        formula: "X * 0.8"
+        formula: "X * 0.72"
     },
     {
         text: "Cycle X card(s)",
