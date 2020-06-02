@@ -142,8 +142,8 @@ function Import()
         var div = AddFormula(false);
         div.find("[name=EffectAmount]").val(effect.X);
         div.find("[name=EffectType]").val(effect.T).trigger('change');
-        div.find("[name=EffectModifier1]").val(effect.M1 || -1);
-        div.find("[name=EffectModifier2]").val(effect.M2 || -1);
+        div.find("[name=EffectModifier1]").val(("M1" in effect) ? effect.M1 : -1);
+        div.find("[name=EffectModifier2]").val(("M2" in effect) ? effect.M2 : -1);
         div.find("[name=SpecialModifier]").val(effect.SP);
         div.find("[name=Notes]").val(effect.SN);
         div.find(".collapse").collapse(effect.SP || effect.SN ? "show" : "hide");
