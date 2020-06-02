@@ -189,7 +189,7 @@ var effectTypes =
     },
     {
         text: "Scry X",
-        formula: "(X ** 1.3) * 0.16"
+        formula: "(X ** 1.3) * 0.14"
     },
     {
         text: "Lose X HP",
