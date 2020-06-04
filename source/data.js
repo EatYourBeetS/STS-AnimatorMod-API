@@ -141,7 +141,7 @@ var effectTypes =
     },
     {
         text: "Exhaust X random card(s)",
-        formula: "X * 0.15"
+        formula: "X * (0.15 - (card.Cost * 0.1))"
     },
     {
         text: "Discard X card(s)",
