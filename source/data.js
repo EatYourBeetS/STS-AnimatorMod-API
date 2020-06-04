@@ -389,5 +389,13 @@ var effectTypes =
     {
         text: "Upgrade X random card(s)",
         formula: "X * 0.32"
+    },
+    {
+        text: "Apply X Shackles [*]",
+        formula: "X * 0.2"
+    },
+    {
+        text: "Apply X Shackles (AoE)[*]",
+        formula: "X * 0.25"
     }
 ];
