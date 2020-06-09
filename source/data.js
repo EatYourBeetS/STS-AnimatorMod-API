@@ -68,7 +68,7 @@ var effectModifiers2 =
     },
     {
         text: "On Exhaust:",
-        formula: "X * 0.5"
+        formula: "X * 0.4"
     },
     {
         text: "On Discard:",
@@ -94,7 +94,15 @@ var effectModifiers2 =
         text: "Reload:",
         formula: "X * 2.135",
         priority: 20
-    }
+    },
+    {
+        text: "Cooldown 2:",
+        formula: "X * (0.22 - (card.Cost * 0.02))"
+    },
+    {
+        text: "Cooldown 3:",
+        formula: "X * (0.16 - (card.Cost * 0.02))"
+    },
 ];
 
 var effectTypes =
@@ -397,5 +405,25 @@ var effectTypes =
     {
         text: "Apply X Shackles (AoE)[*]",
         formula: "X * 0.25"
-    }
+    },
+    {
+        text: "Gain X Artifact [*]",
+        formula: "X * 0.6"
+    },
+    {
+        text: "Gain X Temp. Artifact [*]",
+        formula: "(X ** 0.6) * 0.35"
+    },
+    {
+        text: "Apply X Lock-On",
+        formula: "X * 0.12"
+    },
+    {
+        text: "Evoke an orb X time(s)",
+        formula: "(X ** 1.4) * 0.4"
+    },
+    {
+        text: "Evoke ALL orbs X time(s)",
+        formula: "(X ** 1.2) * 1.2"
+    },
 ];
