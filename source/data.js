@@ -96,12 +96,16 @@ var effectModifiers2 =
         priority: 20
     },
     {
+        text: "Cooldown 1:",
+        formula: "X * 0.37"
+    },
+    {
         text: "Cooldown 2:",
-        formula: "X * (0.22 - (card.Cost * 0.02))"
+        formula: "X * 0.21"
     },
     {
         text: "Cooldown 3:",
-        formula: "X * (0.16 - (card.Cost * 0.02))"
+        formula: "X * 0.13"
     },
 ];
 
@@ -416,7 +420,7 @@ var effectTypes =
     },
     {
         text: "Apply X Lock-On",
-        formula: "X * 0.12"
+        formula: "X * 0.08"
     },
     {
         text: "Evoke an orb X time(s)",
