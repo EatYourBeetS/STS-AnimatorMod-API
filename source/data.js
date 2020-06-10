@@ -295,7 +295,7 @@ var effectTypes =
     },
     {
         text: "Channel X Lightning",
-        formula: "X * 0.45"
+        formula: "X * 0.4"
     },
     {
         text: "Channel X Fire",
