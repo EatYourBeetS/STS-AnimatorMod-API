@@ -430,4 +430,12 @@ var effectTypes =
         text: "Evoke ALL orbs X time(s)",
         formula: "(X ** 1.2) * 1.2"
     },
+    {
+        text: "Draw X less card(s) next turn.",
+        formula: "-0.5 * (X ** 1.4)"
+    },
+    {
+        text: "Gain X Support Damage [*]",
+        formula: "X * 0.25"
+    }
 ];
