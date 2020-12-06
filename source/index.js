@@ -265,7 +265,7 @@ function UpdateCard()
 
     for (var i = 0; i < card.Modifiers.length; i++)
     {
-        card.Value = eval(card.Modifiers[i].formula);
+        card.Value = eval(card.Modifiers[i].formula.replace('X', '(X)'));
     }
 
     card.MaxValue = Round(card.MaxValue);
@@ -334,7 +334,7 @@ function UpdateEffect(div, card)
             priority: (copy.priority || 10),
             apply: () => 
             {
-                 X = eval(copy.formula); 
+                 X = eval(copy.formula.replace('X', '(X)')); 
             },
         },
         {
@@ -346,7 +346,7 @@ function UpdateEffect(div, card)
                 {
                     try
                     {
-                        X = eval(effect.SpecialModifier);
+                        X = eval(effect.SpecialModifier.replace('X', '(X)'));
                     }
                     catch (ex)
                     {
@@ -362,7 +362,7 @@ function UpdateEffect(div, card)
                 if (effect.Mod2)
                 {
                     copy.text = effect.Mod2.text + " " + copy.text;
-                    X = eval(effect.Mod2.formula);
+                    X = eval(effect.Mod2.formula.replace('X', '(X)'));
                 }
             },
         },
@@ -373,7 +373,7 @@ function UpdateEffect(div, card)
                 if (effect.Mod1)
                 {
                     copy.text = effect.Mod1.text + " " + copy.text;
-                    X = eval(effect.Mod1.formula);
+                    X = eval(effect.Mod1.formula.replace('X', '(X)'));
                 }
             },
         },
