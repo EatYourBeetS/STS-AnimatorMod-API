@@ -107,22 +107,6 @@ var effectModifiers2 =
         text: "Cooldown 3:",
         formula: "X * 0.13"
     },
-	{
-        text: "Affinity Check 2:",
-        formula: "X * 0.92"
-    },
-    {
-        text: "Affinity Check 3:",
-        formula: "X * 0.82"
-    },
-    {
-        text: "Affinity Check 4:",
-        formula: "X * 0.72"
-    },
-	{
-        text: "Affinity Check 5:",
-        formula: "X * 0.62"
-    }
 ];
 
 var effectTypes =
@@ -245,107 +229,68 @@ var effectTypes =
     },
     {
         text: "X Force Scaling",
-        formula: "(X ** 1.4) * 0.075"
+        formula: "(X ** 1.4) * 0.15"
     },
     {
         text: "X Agility Scaling",
-        formula: "(X ** 1.4) * 0.075"
+        formula: "(X ** 1.4) * 0.15"
     },
     {
         text: "X Intellect Scaling",
-        formula: "(X ** 1.4) * 0.075"
-    },
-	{
-        text: "X Blessing Scaling",
-        formula: "(X ** 1.4) * 0.075"
-    },
-	{
-        text: "X Corruption Scaling",
-        formula: "(X ** 1.4) * 0.075"
+        formula: "(X ** 1.4) * 0.15"
     },
     {
         text: "Gain X Force",
-        formula: "(X ** 1.8) * 0.16"
+        formula: "(X ** 1.8) * 0.2"
     },
     {
         text: "Gain X Agility",
-        formula: "(X ** 1.8) * 0.21"
+        formula: "(X ** 1.8) * 0.25"
     },
     {
         text: "Gain X Intellect",
-        formula: "(X ** 1.8) * 0.23"
-    },
-	{
-        text: "Gain X Blessing",
-        formula: "(X ** 1.8) * 0.22"
-    },
-	{
-        text: "Gain X Corruption",
-        formula: "(X ** 1.8) * 0.14"
+        formula: "(X ** 1.8) * 0.28"
     },
     {
         text: "Boost X Force",
-        formula: "((X ** 1.8) * 0.16) + 0.12"
+        formula: "((X ** 1.8) * 0.2) + 0.12"
     },
     {
         text: "Boost X Agility",
-        formula: "((X ** 1.8) * 0.21) + 0.12"
+        formula: "((X ** 1.8) * 0.25) + 0.12"
     },
     {
         text: "Boost X Intellect",
-        formula: "((X ** 1.8) * 0.23) + 0.12"
-    },
-	{
-        text: "Boost X Blessing",
-        formula: "((X ** 1.8) * 0.22) + 0.12"
-    },
-	{
-        text: "Boost X Corruption",
-        formula: "((X ** 1.8) * 0.14) + 0.12"
+        formula: "((X ** 1.8) * 0.28) + 0.12"
     },
     {
         text: "Enter Force Stance [*]",
-        formula: "0.71",
+        formula: "0.51",
         disable_x: true
     },
     {
         text: "Enter Agility Stance [*]",
-        formula: "0.78",
+        formula: "0.58",
         disable_x: true
     },
     {
         text: "Enter Intellect Stance [*]",
-        formula: "0.84",
-        disable_x: true
-    },
-	{
-        text: "Enter Corruption Stance [*]",
-        formula: "2.33",
+        formula: "0.64",
         disable_x: true
     },
     {
-        text: "Retain Force",
-        formula: "0.1",
-        disable_x: true
-    },
-    {
-        text: "Retain Agility",
-        formula: "0.11",
-        disable_x: true
-    },
-    {
-        text: "Retain Intellect",
+        text: "Lose no Force next turn",
         formula: "0.12",
         disable_x: true
     },
-	{
-        text: "Retain Blessing",
-        formula: "0.11",
+    {
+        text: "Lose no Agility next turn",
+        formula: "0.13",
         disable_x: true
     },
-	{
-        text: "Retain Corruption",
-        formula: "0.09",
+    {
+        text: "Lose no Intellect next turn",
+        formula: "0.14",
         disable_x: true
     },
     {
@@ -375,10 +320,6 @@ var effectTypes =
     {
         text: "Channel X Dark",
         formula: "X * 0.58"
-    },
-	{
-        text: "Channel X Chaos",
-        formula: "X * 0.88"
     },
     {
         text: "Add X Status to Hand",
@@ -436,14 +377,22 @@ var effectTypes =
         disable_x: true
     },
     {
-        text: "Multicolor",
+        text: "Shapeshifter",
         formula: "0.4 * (1 - (card.Cost / 3)) + 0.1",
         disable_mod: true,
         disable_x: true
     },
     {
-        text: "Affinity Value",
-        formula: "(X * 0.08) * (1 - (card.Cost / 3)) + 0.09"
+        text: "Martial Artist",
+        formula: "0.16 * (1 - (card.Cost / 3)) + 0.09",
+        disable_mod: true,
+        disable_x: true
+    },
+    {
+        text: "Spellcaster",
+        formula: "0.16 * (1 - (card.Cost / 3)) + 0.14",
+        disable_mod: true,
+        disable_x: true
     },
     {
         text: "Upgrade X card(s)",
@@ -452,14 +401,6 @@ var effectTypes =
     {
         text: "Upgrade X random card(s)",
         formula: "X * 0.32"
-    },
-	{
-        text: "Apply X Freezing [*]",
-        formula: "X * 0.55"
-    },
-    {
-        text: "Apply X Freezing (AoE)[*]",
-        formula: "X * 0.70"
     },
     {
         text: "Apply X Shackles [*]",
