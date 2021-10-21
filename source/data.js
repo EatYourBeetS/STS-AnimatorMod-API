@@ -427,7 +427,7 @@ var effectTypes =
     },
     {
         text: "Gain X Blur",
-        formula: "X * 0.66"
+        formula: "X * 0.56"
     },
     {
         text: "Permanently Upgrade Itself",
