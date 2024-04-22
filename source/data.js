@@ -34,6 +34,10 @@ var cardModifiers =
         text: "Innate",
         formula: "(card.Value) * 1.1"
     },
+	{
+        text: "Delayed",
+        formula: "(card.Value) * 0.85"
+    },
     {
         text: "Haste",
         formula: "(card.Value) + 0.3"
